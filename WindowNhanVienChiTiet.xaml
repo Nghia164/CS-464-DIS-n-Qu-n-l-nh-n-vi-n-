@@ -1,0 +1,149 @@
+﻿<Window x:Class="DoAn.WindowNhanVienChiTiet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DoAn"
+        mc:Ignorable="d"
+                Title="Thông Tin Chi Tiết Nhân Viên" Height="600" Width="800" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Background="#F9FAFB">
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,10,0,5"/>
+            <Setter Property="Foreground" Value="#374151"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Border Padding="25">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="HỒ SƠ NHÂN VIÊN" FontSize="24" FontWeight="Bold" 
+                       HorizontalAlignment="Center" Foreground="#2563EB" Margin="0,0,0,25"/>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Mã Nhân Viên (Nhập để Sửa/Xóa):" />
+                    <TextBox x:Name="txtMaNV"  BorderThickness="1"/>
+
+                    <TextBlock Text="Họ và Tên:"/>
+                    <TextBox x:Name="txtTen"/>
+
+                    <TextBlock Text="Ngày Sinh:"/>
+                    <DatePicker x:Name="dpNgaySinh"/>
+
+                    <TextBlock Text="Email:"/>
+                    <TextBox x:Name="txtEmail"/>
+
+                    <TextBlock Text="Số Điện Thoại:"/>
+                    <TextBox x:Name="txtSDT"/>
+
+                    <TextBlock Text="Địa Chỉ:"/>
+                    <TextBox x:Name="txtDiaChi"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Ngày Vào Làm:"/>
+                    <DatePicker x:Name="dpNgayVaoLam"/>
+
+                    <TextBlock Text="Trạng Thái Làm Việc:"/>
+                    <ComboBox x:Name="cboTrangThai">
+                        <ComboBoxItem Content="Đang làm" IsSelected="True"/>
+                        <ComboBoxItem Content="Nghỉ phép"/>
+                        <ComboBoxItem Content="Đã nghỉ việc"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Phòng Ban:"/>
+                    <ComboBox x:Name="cboPhongBan" DisplayMemberPath="TenPhongBan" SelectedValuePath="MaPhongBan"/>
+
+                    <TextBlock Text="Chức Vụ:"/>
+                    <ComboBox x:Name="cboChucVu" DisplayMemberPath="TenChucVu" SelectedValuePath="MaChucVu"/>
+
+                    <TextBlock Text="Link Ảnh (Tùy chọn):"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="txtAnh"/>
+                        <Button Content="..." Grid.Column="1" Width="35" Height="35" 
+                                Click="BtnChonAnh_Click" Margin="5,0,0,0" Background="#E5E7EB"/>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="2" Margin="0,30,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="BtnXoa" Content="Xóa NV" Click="BtnXoa_Click" Width="100" Height="40" 
+                        Background="#EF4444" Foreground="White" FontWeight="Bold" Cursor="Hand">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button x:Name="BtnLuu" Click="BtnLuu_Click"  Content="Thêm Mới" Width="100" Height="40" Margin="0,0,10,0"
+                            Background="#10B981" Foreground="White" FontWeight="Bold" Cursor="Hand">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button x:Name="BtnSua" Content="Cập Nhật (Sửa)" Click="BtnSua_Click" Width="120" Height="40" Margin="0,0,10,0"
+                            Background="#2563EB" Foreground="White" FontWeight="Bold" Cursor="Hand">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button x:Name  ="BtnHuy"  Content="Hủy Bỏ" Click="BtnHuy_Click" Width="80" Height="40" 
+                            Background="#D1D5DB" Foreground="Black" FontWeight="Medium" Cursor="Hand">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

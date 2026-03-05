@@ -1,0 +1,127 @@
+﻿<Window x:Class="DoAn.CaiDat"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DoAn"
+        mc:Ignorable="d"
+        Title="Cài đặt hệ thống"
+        Height="720" Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="#F3F4F6"
+        FontFamily="Segoe UI">
+
+    <Window.Resources>
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#94A3B8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="25,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8" Margin="10">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2B3649"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Margin" Value="0,0,20,0"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#E0E0E0" BlurRadius="15" ShadowDepth="2" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#111827">
+            <StackPanel>
+                <TextBlock Text="Quản Lý Nhân Viên" Foreground="White" FontSize="20" FontWeight="Bold" Margin="35,40,0,40"/>
+
+                <Button x:Name="btnTongQuan" Click="btnTongQuan_Click"  Content="📊  Tổng Quan" Style="{StaticResource MenuButtonStyle}"/>
+                <Button x:Name="btnNhanVien" Click="btnNhanVien_Click" Content="👥  Nhân Viên" Style="{StaticResource MenuButtonStyle}"/>
+                <Button x:Name="btnTuyenDung" Click="btnTuyenDung_Click" Content="📅  Tuyển Dụng" Style="{StaticResource MenuButtonStyle}"/>
+                <Button x:Name="btnHieuSuat" Click="btnHieuSuat_Click" Content="📈  Hiệu Suất" Style="{StaticResource MenuButtonStyle}"/>
+                <Button x:Name="btnLuongThuong" Click="btnLuongThuong_Click" Content="💰  Lương Thưởng" Style="{StaticResource MenuButtonStyle}"/>
+                <Button x:Name="btnCaiDat" Click="btnCaiDat_Click" Content="⚙️  Cài Đặt" Style="{StaticResource MenuButtonStyle}" Background="#1F2937" Foreground="White"/>
+                <Button x:Name="btnThoat" Click="btnThoat_Click" Content="❌  Thoát" Style="{StaticResource MenuButtonStyle}"/>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="0,0,0,30">
+                <TextBlock Text="Cài Đặt Hệ Thống" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Foreground="#111827"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="💾  Lưu Cài Đặt" Click="btnLuu_Click" Background="#2563EB" Foreground="White" Padding="20,10" BorderThickness="0" Cursor="Hand" FontWeight="Medium">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="8"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Border Grid.Row="1" Style="{StaticResource CardStyle}" Margin="0,0,0,20">
+                <StackPanel Margin="25">
+                    <TextBlock Text="Kết nối Cơ sở dữ liệu" FontSize="18" FontWeight="Bold" Margin="0,0,0,20" Foreground="#333"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Chuỗi kết nối SQL Server (HR)" Foreground="#64748B" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                            <TextBox x:Name="txtSqlServer" Height="45" Padding="15,0" VerticalContentAlignment="Center" BorderBrush="#CBD5E1" BorderThickness="1"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Chuỗi kết nối MySQL (Payroll - Tùy chọn)" Foreground="#64748B" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                            <TextBox x:Name="txtMySql" Height="45" Padding="15,0" VerticalContentAlignment="Center" BorderBrush="#CBD5E1" BorderThickness="1"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="2" Style="{StaticResource CardStyle}">
+                <StackPanel Margin="25">
+                    <TextBlock Text="Tùy chọn hệ thống" FontSize="18" FontWeight="Bold" Margin="0,0,0,20" Foreground="#333"/>
+
+                    <CheckBox x:Name="chkAutoSync" Content="Tự động đồng bộ dữ liệu HR sang Payroll hàng ngày" Margin="0,10" FontSize="15" Cursor="Hand"/>
+                    <CheckBox x:Name="chkAnniversary" Content="Hiển thị cảnh báo kỷ niệm ngày vào làm của nhân viên" Margin="0,10" FontSize="15" Cursor="Hand"/>
+                    <CheckBox x:Name="chkExportExcel" Content="Cho phép xuất báo cáo ra định dạng Excel / PDF" Margin="0,10" FontSize="15" Cursor="Hand"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
